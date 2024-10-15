@@ -1,0 +1,20 @@
+.card-img-top {
+    object-fit: cover;
+    height: 300px; 
+}
+.first-card .card-body {
+    flex: 1 1 auto;
+    padding-top: 10px;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+.first-card {
+    height: 700px; 
+}
+.first-card .card-img-top {
+    height: 450px; 
+}

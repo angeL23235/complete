@@ -1,0 +1,9 @@
+.star{
+    transition: all 1s ease;
+}
+.star:hover,
+.star.checked{
+    color: gold;
+    cursor: pointer;
+
+}

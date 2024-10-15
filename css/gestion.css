@@ -1,0 +1,106 @@
+body {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    background-color: #EBEBEB;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+
+.bigtable {
+    margin-top: -680px; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+}
+
+
+.buscar form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.buscar input[type="text"] {
+    width: 300px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.buscar input[type="submit"] {
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buscar input[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Estilo de la tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table thead th {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+    background-color: #ddd;
+}
+
+.btn-danger, .btn-primary {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.bi-pencil-square, .bi-trash-fill {
+    font-size: 18px;
+}
+
+.modal-header, .modal-footer {
+    text-align: center;
+}
+
+
+.table img {
+    border-radius: 50%;
+}
+
+
+
+

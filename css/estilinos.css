@@ -1,0 +1,198 @@
+body {
+    font-family: 'Bebas Neue', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #343a40;
+    padding-top: 20px;
+    position: fixed;
+}
+
+.sidebar a {
+    color: #adb5bd;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+    color: #fff;
+}
+
+.icono-sidebar {
+    color: white;
+}
+
+.content {
+    margin-left: 250px;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: #343a40;
+    position: fixed;
+    top: 0;
+    left: 250px;
+    width: calc(100% - 250px);
+    z-index: 1000;
+    border-bottom: 1px solid #495057;
+}
+
+.navbar-brand {
+    text-align: center;
+    width: 100%;
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-inline .input-group {
+    width: 250px;
+    margin-left: auto;
+}
+
+.dropdown img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.dark-mode {
+    background-color: #343a40;
+    color: white;
+    transition: all 2.5s ease;
+}
+
+.dark-mode .sidebar {
+    background-color: #212529;
+}
+
+.dark-mode .sidebar a {
+    color: #adb5bd;
+}
+
+.dark-mode .sidebar a:hover {
+    background-color: #495057;
+    color: white;
+}
+
+.dark-mode .navbar {
+    background-color: #212529;
+}
+
+/* Modo claro de las tarjetas papu */
+body {
+    background-color: #EBEBEB;
+    color: #000;
+    border-color: #444444;
+    transition: all 1.5s ease;
+}
+
+.card {
+    background-color: #fff;
+    color: #000;
+    transition: background-color 0.3s, color 0.3s;
+    border-color: #444444;
+    transition: all 1.5s ease;
+}
+
+/* Modo oscuro tarjetas */
+
+.dark-mode .card {
+    background-color: #1f1f1f;
+    color: #fff;
+    border-color: #444444;
+    transition: all 1.5s ease;
+}
+
+/* tablas */
+.dark-mode .table {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border-color: #444444;
+    transition: all 1.5s ease;
+}
+
+
+.dark-mode .table td {
+    border-color: #555555;
+    color: white;
+    background-color: black;
+    border-color: #444444;
+    transition: all 1.5s ease;
+}
+
+.dark-mode .table th {
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-color: #444444;
+    transition: all 1.5s ease;
+}
+
+.dark-mode .table tr:hover {
+    background-color: #555555;
+    border-color: #444444;
+    transition: all 1.5s ease;
+}
+
+
+.dark-mode .btn-danger {
+    background-color: blueviolet;
+    border-color: black;
+    border-color: #444444;
+    transition: all 1.5s ease;
+}
+
+.dark-mode .btn-primary .juaz {
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+
+/* Botón de búsqueda - modo claro */
+.buscar input[type="submit"] {
+    background-color: #007bff; /* Fondo azul */
+    color: #ffffff; /* Texto blanco */
+    border: none; /* Sin borde */
+}
+
+/* Botón de búsqueda - modo oscuro */
+.dark-mode .buscar input[type="submit"] {
+    background-color: #0069d9; /* Fondo azul oscuro */
+    color: #ffffff; /* Texto blanco */
+    border: none; /* Sin borde */
+}
+/* formulario de crear */
+.dark-mode .myform{
+    color:white;
+    border: #007bff;
+    background-color: black;
+} 
+
+.dark-mode .formulario11 button[type="submit"]{
+    background-color: blueviolet;
+}
+
+/* modal */
+
+.dark-mode .modal{
+    color:black;
+}
+
+.dark-mode .btn-info{
+    background: linear-gradient(90deg, hsla(120, 6%, 90%, 1) 0%, hsla(309, 49%, 46%, 1) 90%, hsla(228, 75%, 16%, 1) 100%);
+}
