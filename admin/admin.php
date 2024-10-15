@@ -1,36 +1,46 @@
 <?php
 include "../conexion.php";
 session_start();
+if (!isset($_SESSION['lang'])) {
+    $_SESSION['lang'] = 'es';
+}
+
+if (isset($_GET['lang'])) {
+    $_SESSION['lang'] = $_GET['lang'];
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
+$lang = $_SESSION['lang'];
+if ($lang == 'es') {
+    $translations = require "../translation/español.php";
+} else {
+    $translations = require "../translation/ingles.php";
+}   
 ?>
 <!DOCTYPE html>
-<html lang="es">
 
+<html lang="<?php echo $lang; ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plantilla Dashboard</title>
-    <!-- Bostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Iconos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Fuente de letra -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <!-- El css -->
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/estilinos.css">
 </head>
 
 <body>
 
     <div class="wrapper">
         <div class="sidebar">
-            <!-- Espacio para ícono arriba de Traslapp -->
             <div class="icono-sidebar my-3 text-center">
                 <img src="../img/Traslapp.jpg" alt="traslapp" class="rounded-circle" width="90" height="60">
             </div>
             <a href="#"><i class="fas fa-home"></i> Dashboard</a>
 
-            <!-- Menú desplegable Servicios -->
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseServicios"
                 aria-expanded="false" aria-controls="collapseServicios">
                 <i class="fas fa-concierge-bell"></i> Gestion
@@ -38,15 +48,14 @@ session_start();
             </a>
             <div class="collapse" id="collapseServicios">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a href="admin.php?mod=crear" class="nav-link">Create</a>
-                    <a href="admin.php?mod=CRUD" class="nav-link">CRUD DE USUARIOS</a>
+                    <a href="admin.php?mod=crear" class="nav-link"><?php echo $translations['Create']; ?></a>
+                    <a href="admin.php?mod=CRUD" class="nav-link"><?php echo $translations['CRUD'];?></a>
                 </nav>
             </div>
             </div>
         </div>
 
         <div class="content">
-            <!-- Barra de navegación -->
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container-fluid">
                     <div class="navbar-brand mx-auto">
@@ -77,14 +86,13 @@ session_start();
                                     height="40">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
-                                <li><a class="dropdown-item" href="admin.php?mod=perfil">Perfil</a></li>
-                                <li><a class="dropdown-item" href="#">Configuración</a></li>
+                                <li><a class="dropdown-item" href="admin.php?mod=perfil"><?php echo $translations['profile']; ?></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
                                     <a class="dropdown-item d-flex align-items-center" href="#" id="toggle-dark-mode">
-                                        <i class="fas fa-moon me-2"></i> Activar Modo Oscuro
+                                        <i class="fas fa-moon me-2"></i> <?php echo $translations['Active']?>
                                     </a>
                                 </li>
                                 <li><a class="dropdown-item" href="../exit.php">Salir</a></li>
@@ -93,9 +101,6 @@ session_start();
                     </div>
                 </div>
             </nav>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-            <!-- para el cambio de modo oscuro -->
-            <script src="../js/modoosc.js"></script>
             
             <!-- modulacion -->
             <?php
@@ -115,7 +120,9 @@ session_start();
         require_once("../modules/profileadmin.php");
     }
 ?>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- para el cambio de modo oscuro -->
+     <script src="../js/modoosc.js"></script>
 </body>
 
 </html>

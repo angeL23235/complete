@@ -165,18 +165,17 @@ body {
 
 /* Botón de búsqueda - modo claro */
 .buscar input[type="submit"] {
-    background-color: #007bff; /* Fondo azul */
-    color: #ffffff; /* Texto blanco */
-    border: none; /* Sin borde */
+    background-color: #007bff; 
+    color: #ffffff; 
+    border: none; 
 }
 
 /* Botón de búsqueda - modo oscuro */
 .dark-mode .buscar input[type="submit"] {
-    background-color: #0069d9; /* Fondo azul oscuro */
-    color: #ffffff; /* Texto blanco */
-    border: none; /* Sin borde */
+    background-color: #0069d9; 
+    color: #ffffff; 
+    border: none; 
 }
-/* formulario de crear */
 .dark-mode .myform{
     color:white;
     border: #007bff;

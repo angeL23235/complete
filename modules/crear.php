@@ -1,12 +1,10 @@
 <?php
-session_start();
 
-// Cargar el archivo de traducción correspondiente
 $lang = $_SESSION['lang'];
 if ($lang == 'es') {
-    $translations = include __DIR__ . "/translation/español.php";
+    $translations = require "../translation/español.php";
 } else {
-    $translations = include __DIR__ . "/translation/ingles.php";
+    $translations = require "../translation/ingles.php";
 }
 ?>
 <!DOCTYPE html>
@@ -65,6 +63,7 @@ if ($lang == 'es') {
                         </div>
                         <div class="form-group">
                             <label for="foto"><?php echo $translations['profile_picture']; ?></label>
+                            <br>
                             <input type="file" name="foto2" class="form-control-file">
                         </div>
                         <br>

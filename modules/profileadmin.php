@@ -59,6 +59,11 @@ if (isset($_POST['btn_add'])) {
     <title>Editar perfil</title>
     <link rel="stylesheet" href="../css/profile.css">
 </head>
+<style>
+    .profile-container{
+        margin-top:-670px;
+    }
+</style>
 
 <body>
     <!-- Pero la queria tanto :,v -->

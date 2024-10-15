@@ -101,7 +101,6 @@ if ($lang == 'es') {
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                                 <li><a class="dropdown-item" href="dashboard.php?mod=perfil"><?php echo $translations['profile']; ?></a></li>
-                                <li><a class="dropdown-item" href="#"><?php echo $translations['settings']; ?></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -117,8 +116,6 @@ if ($lang == 'es') {
                 </div>
             </nav>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="../js/modoosc.js"></script>
 
             <?php
      if (@$_GET['mod'] == "") {
@@ -161,7 +158,8 @@ if ($lang == 'es') {
     }
 ?>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/modoosc.js"></script>
 </body>
 
 </html>
