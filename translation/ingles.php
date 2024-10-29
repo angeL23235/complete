@@ -260,5 +260,6 @@ return [
     'close' => 'Close',
     'edit_user' => 'Update user details',
     'save_changes' => 'Save changes',
-    'Active' => 'Active dark mode'
+    'Active' => 'Active dark mode',
+    'Search' => 'Search services...',
 ];

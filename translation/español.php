@@ -263,6 +263,7 @@ return [
     'edit_user' => 'Actualizar datos del usuario',
     'save_changes' => 'Guardar cambios',
     'Active' => 'Activar modo oscuro',
+    'Search' => 'Buscar Servicios...',
     
 ];
 

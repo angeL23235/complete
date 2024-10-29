@@ -17,7 +17,7 @@ if (isset($_POST['btn_update'])) {
 
     // Proceso de manejo de imagen
     $ft_servicio = $_FILES['foto_servicio'];
-    $direc_des = "../img-servs/";
+    $direc_des = "../img-servs";
     $extension = pathinfo($ft_servicio['name'], PATHINFO_EXTENSION); 
     $nombre_archivo = $_SESSION['doc'] . "." . $extension;
     $ubicacion_temporal = $ft_servicio['tmp_name']; 

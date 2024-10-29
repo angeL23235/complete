@@ -40,7 +40,8 @@ if ($lang == 'es') {
             <div class="icono-sidebar my-3 text-center">
                 <img src="../img/Traslapp.jpg" alt="traslapp" class="rounded-circle" width="90" height="60">
             </div>
-            <a href="dashboard.php" class="nav-link" style="color: #000;"><i class="fas fa-home"></i> <?php echo $translations['dashboard']; ?></a>
+            <a href="dashboard.php" class="nav-link" style="color: #000;"><i class="fas fa-home"></i>
+                <?php echo $translations['dashboard']; ?></a>
 
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseServices"
                 aria-expanded="false" aria-controls="collapseServices" style="color: #000;">
@@ -50,32 +51,38 @@ if ($lang == 'es') {
             <div class="collapse" id="collapseServices">
                 <nav class="sb-sidenav-menu-nested nav">
                     <?php if($_SESSION['rl'] == 2){?>
-                    <a href="dashboard.php?mod=servicios" class="nav-link" style="color: #000;"><?php echo $translations['load_services']; ?></a> 
+                    <a href="dashboard.php?mod=servicios" class="nav-link"
+                        style="color: #000;"><?php echo $translations['load_services']; ?></a>
                     <?php } ?>
-                    <a href="dashboard.php?mod=buscarservs" class="nav-link" style="color: #000;"><?php echo $translations['explore_services']; ?></a>
+                    <a href="dashboard.php?mod=buscarservs" class="nav-link"
+                        style="color: #000;"><?php echo $translations['explore_services']; ?></a>
                 </nav>
             </div>
 
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseNavigation"
-                aria-expanded="false" aria-controls="collapseNavigation" style="color: #000;"> 
+                aria-expanded="false" aria-controls="collapseNavigation" style="color: #000;">
                 <i class="fas fa-map-marked-alt"></i> <?php echo $translations['navigation']; ?>
                 <i class="fas fa-angle-down"></i>
             </a>
             <div class="collapse" id="collapseNavigation">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a href="dashboard.php?mod=transporte" class="nav-link" style="color: #000;"><?php echo $translations['public_transport']; ?></a>
-                    <a href="dashboard.php?mod=resta" class="nav-link" style="color: #000;"><?php echo $translations['restaurants']; ?></a> 
-                    <a href="dashboard.php?mod=hotel" class="nav-link" style="color: #000;"><?php echo $translations['hotels']; ?></a>
-                    <a href="dashboard.php?mod=reserva" class="nav-link" style="color: #000;"><?php echo $translations['reservation']; ?></a> 
+                    <a href="dashboard.php?mod=transporte" class="nav-link"
+                        style="color: #000;"><?php echo $translations['public_transport']; ?></a>
+                    <a href="dashboard.php?mod=resta" class="nav-link"
+                        style="color: #000;"><?php echo $translations['restaurants']; ?></a>
+                    <a href="dashboard.php?mod=hotel" class="nav-link"
+                        style="color: #000;"><?php echo $translations['hotels']; ?></a>
+                    <a href="dashboard.php?mod=reserva" class="nav-link"
+                        style="color: #000;"><?php echo $translations['reservation']; ?></a>
                 </nav>
             </div>
         </div>
 
-        <div class="content">
+        <div class="content text-center">
 
-            <nav class="navbar navbar-expand-lg" style="background-color: #5DC1B9;"> 
+            <nav class="navbar navbar-expand-lg" style="background-color: #5DC1B9;">
                 <div class="container-fluid">
-                    <div class="navbar-brand mx-auto" style="color: #ffffff;"> 
+                    <div class="navbar-brand mx-auto" style="color: #ffffff;">
                         TRASLAPP
                     </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -86,7 +93,10 @@ if ($lang == 'es') {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <form class="form-inline my-2 my-lg-0 ms-auto">
                             <div class="input-group">
-                                <input class="form-control" style="color: #000;" placeholder="<?php echo $translations['search_placeholder']; ?>" aria-label="<?php echo $translations['search_placeholder']; ?>"> <!-- Letra negra en el campo de búsqueda -->
+                                <input class="form-control" style="color: #000;"
+                                    placeholder="<?php echo $translations['search_placeholder']; ?>"
+                                    aria-label="<?php echo $translations['search_placeholder']; ?>">
+                                <!-- Letra negra en el campo de búsqueda -->
                             </div>
                         </form>
                         <div class="dropdown ms-3 d-flex align-items-center">
@@ -96,11 +106,13 @@ if ($lang == 'es') {
                             <a href="#"
                                 class="d-flex align-items-center text-black text-decoration-none dropdown-toggle"
                                 id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="<?php echo $_SESSION['ft']?>" alt="User" class="rounded-circle" width="40" height="40">
+                                <img src="<?php echo $_SESSION['ft']?>" alt="User" class="rounded-circle" width="40"
+                                    height="40">
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
-                                <li><a class="dropdown-item" href="dashboard.php?mod=perfil"><?php echo $translations['profile']; ?></a></li>
+                                <li><a class="dropdown-item"
+                                        href="dashboard.php?mod=perfil"><?php echo $translations['profile']; ?></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -109,15 +121,62 @@ if ($lang == 'es') {
                                         <i class="fas fa-moon me-2"></i> <?php echo $translations['dark_mode']; ?>
                                     </a>
                                 </li>
-                                <li><a class="dropdown-item" href="../exit.php"><?php echo $translations['logout']; ?></a></li>
+                                <li><a class="dropdown-item"
+                                        href="../exit.php"><?php echo $translations['logout']; ?></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav>
-
-
             <?php
+            if(@$_GET["mod"]==""){
+            ?>
+            <div id="carouselExampleCaptions" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="margin-top:100px;">
+                        <img src="../img/venta.webp" class="d-block w-100" alt="..." height="700px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>SERVICIOS</h5>
+                            <p>Como local impulsa tu bolsillo con nuevas opciones de trabajo libre</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/turis.jpeg" class="d-block w-100" alt="..." height="800px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>TURISMO</h5>
+                            <p >Como turista ayudate un poco a relajarte contando con los servicios de informacion dentro del sistema </p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/tendencias-hosteleria.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>RESERVAS</h5>
+                            <p>Cuenta con tu comodidad lo mejor de todo esque tienes para escoger el que más te guste.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+                
+            <?php
+    }
      if (@$_GET['mod'] == "") {
         require_once("dashboard.php");
     } else
@@ -158,8 +217,8 @@ if ($lang == 'es') {
     }
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../js/modoosc.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="../js/modoosc.js"></script>
 </body>
 
 </html>

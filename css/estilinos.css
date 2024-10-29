@@ -195,3 +195,21 @@ body {
 .dark-mode .btn-info{
     background: linear-gradient(90deg, hsla(120, 6%, 90%, 1) 0%, hsla(309, 49%, 46%, 1) 90%, hsla(228, 75%, 16%, 1) 100%);
 }
+#suggestions {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: calc(100% - 30px);
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    margin-top: 20%;
+}
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
