@@ -142,24 +142,24 @@ if ($lang == 'es') {
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" style="margin-top:100px;">
-                        <img src="../img/venta.webp" class="d-block w-100" alt="..." height="700px">
+                        <img src="../img/ven.jpg" class="d-block w-100" alt="..." height="700px">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>SERVICIOS</h5>
-                            <p>Como local impulsa tu bolsillo con nuevas opciones de trabajo libre</p>
+                            <h5><?php echo $translations['cervs'];?></h5>
+                            <p><?php echo $translations['descripttt'];?></p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="../img/turis.jpeg" class="d-block w-100" alt="..." height="800px">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>TURISMO</h5>
-                            <p >Como turista ayudate un poco a relajarte contando con los servicios de informacion dentro del sistema </p>
+                            <h5><?php echo $translations['descripttt2'];?></h5>
+                            <p ><?php echo $translations['descripttt3'];?></p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="../img/tendencias-hosteleria.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>RESERVAS</h5>
-                            <p>Cuenta con tu comodidad lo mejor de todo esque tienes para escoger el que más te guste.</p>
+                            <h5><?php echo $translations['titlee1']; ?></h5>
+                            <p><?php echo $translations['descripttt4']?></p>
                         </div>
                     </div>
                 </div>

@@ -262,4 +262,10 @@ return [
     'save_changes' => 'Save changes',
     'Active' => 'Active dark mode',
     'Search' => 'Search services...',
+    'cervs' => 'Servs',
+    'descripttt'=>'As a local, boost your pocket with new free work options',
+    'descripttt2'=>'Tourism',
+    'descripttt3'=>'As a tourist, help yourself relax a little by having the information services within the system.',
+    'titlee1' => 'hospitality and restaurant',
+    'descripttt4' => 'Count on your comfort, the best of all is that you have to choose the one you like the most.'
 ];

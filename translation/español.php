@@ -264,6 +264,12 @@ return [
     'save_changes' => 'Guardar cambios',
     'Active' => 'Activar modo oscuro',
     'Search' => 'Buscar Servicios...',
+    'cervs' => 'SERVICIOS',
+    'descripttt'=>'Como local, aumenta tu bolsillo con nuevas opciones de trabajo gratuitas',
+    'descripttt2'=>'TURISMO',
+    'descripttt3'=>'Como turista, ayúdate a relajarte un poco al contar con los servicios de información dentro del sistema.',
+    'titlee1' => 'Hosteleria y restaurante',
+    'descripttt4' => 'Cuenta con tu comodidad, lo mejor de todo es que tienes que elegir el que más te guste.',
     
 ];
 
