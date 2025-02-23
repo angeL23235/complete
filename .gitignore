@@ -1,0 +1,8 @@
+# Ignorar archivo específico
+conexion.php
+
+# Ignorar carpeta js
+js/
+
+# Ignorar archivo específico dentro de admin
+admin/admin.php
