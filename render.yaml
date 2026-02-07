@@ -1,0 +1,40 @@
+# ============================================
+# Configuración de Render.com para Traslapp
+# ============================================
+# Este archivo define los servicios necesarios para desplegar la aplicación
+# Render detectará automáticamente este archivo y creará los servicios
+
+services:
+  # ============================================
+  # Servicio Web (PHP)
+  # ============================================
+  - type: web
+    name: traslapp-web
+    runtime: php
+    plan: free  # Plan gratuito
+    buildCommand: ""  # PHP no requiere build
+    startCommand: php -S 0.0.0.0:$PORT -t .
+    envVars:
+      - key: PHP_VERSION
+        value: 8.2
+      - key: DB_HOST
+        sync: false  # Se configurará manualmente desde el panel
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_PORT
+        value: 3306
+    healthCheckPath: /index.php
+
+  # ============================================
+  # Base de Datos MySQL
+  # ============================================
+  - type: pserv
+    name: traslapp-db
+    plan: free  # Plan gratuito (límite de 90 días, luego se pausa)
+    databaseName: traslapp_db
+    databaseUser: traslapp_user
+    # La contraseña se generará automáticamente

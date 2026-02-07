@@ -1,0 +1,62 @@
+═══════════════════════════════════════════════════════════════
+  🚀 CÓMO EJECUTAR TRASLAPP - INSTRUCCIONES RÁPIDAS
+═══════════════════════════════════════════════════════════════
+
+OPCIÓN 1: CON XAMPP (MÁS FÁCIL) ⚡
+═══════════════════════════════════════════════════════════════
+
+1. Abre XAMPP Control Panel
+2. Inicia SOLO MySQL (no necesitas Apache)
+3. Abre phpMyAdmin: http://localhost/phpmyadmin
+4. Crea la base de datos:
+   - Click en "Nueva" (New)
+   - Nombre: traslapp_db
+   - Cotejamiento: utf8mb4_unicode_ci
+   - Click en "Crear"
+5. Importa las tablas:
+   - Selecciona traslapp_db
+   - Pestaña "Importar" (Import)
+   - Selecciona el archivo: database.sql
+   - Click en "Continuar"
+6. Ejecuta el servidor PHP:
+   Abre PowerShell en esta carpeta y ejecuta:
+   
+   C:\xampp\php\php.exe -S localhost:8000
+   
+   O si tienes PHP en el PATH:
+   php -S localhost:8000
+7. Abre en el navegador:
+   http://localhost:8000/index.php
+
+Login de prueba:
+- Documento: 00000001
+- Contraseña: admin123
+
+═══════════════════════════════════════════════════════════════
+
+OPCIÓN 2: SIN XAMPP (SOLO MYSQL) 🔧
+═══════════════════════════════════════════════════════════════
+
+1. Instala MySQL desde: https://dev.mysql.com/downloads/mysql/
+2. Crea la base de datos:
+   mysql -u root -p
+   CREATE DATABASE traslapp_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   exit
+3. Importa las tablas:
+   mysql -u root -p traslapp_db < database.sql
+4. Edita conexion.php con tu contraseña de MySQL
+5. Instala PHP desde: https://windows.php.net/download/
+6. Ejecuta:
+   php -S localhost:8000
+7. Abre: http://localhost:8000/index.php
+
+═══════════════════════════════════════════════════════════════
+
+ARCHIVOS IMPORTANTES:
+═══════════════════════════════════════════════════════════════
+
+✅ conexion.php - Ya está creado (usa valores por defecto de XAMPP)
+✅ database.sql - Script de la base de datos
+✅ EJECUTAR_LOCAL.md - Guía detallada
+
+═══════════════════════════════════════════════════════════════
