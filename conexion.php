@@ -8,19 +8,34 @@
  * 2. Para desarrollo local, ajusta los valores por defecto
  */
 
-// Configuración usando variables de entorno (recomendado para producción)
-// Si no existen, usa valores por defecto (solo para desarrollo local)
-$host = getenv('DB_HOST') ?: '127.0.0.1';
-$user = getenv('DB_USER') ?: 'root';
-$pass = getenv('DB_PASSWORD') ?: '';
-$db   = getenv('DB_NAME') ?: 'traslapp_db';
-$port = getenv('DB_PORT') ?: '5432';
-
 // Detectar si estamos en Render (por variable de entorno o hostname)
 $is_render = (getenv('RENDER') !== false || 
               getenv('RENDER_SERVICE_NAME') !== false || 
               getenv('RENDER_EXTERNAL_URL') !== false ||
               (isset($_SERVER['SERVER_NAME']) && strpos($_SERVER['SERVER_NAME'], 'onrender.com') !== false));
+
+// Configuración usando variables de entorno (recomendado para producción)
+// En Render, las variables de entorno son OBLIGATORIAS
+if ($is_render) {
+    // En Render, requerir variables de entorno
+    $host = getenv('DB_HOST');
+    $user = getenv('DB_USER');
+    $pass = getenv('DB_PASSWORD');
+    $db   = getenv('DB_NAME');
+    $port = getenv('DB_PORT') ?: '5432';
+    
+    if (empty($host) || empty($user) || empty($pass) || empty($db)) {
+        die('ERROR: Variables de entorno de base de datos no configuradas en Render. ' .
+            'Por favor configura: DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT en el panel de Render.');
+    }
+} else {
+    // Desarrollo local: usar valores por defecto si no hay variables de entorno
+    $host = getenv('DB_HOST') ?: '127.0.0.1';
+    $user = getenv('DB_USER') ?: 'root';
+    $pass = getenv('DB_PASSWORD') ?: '';
+    $db   = getenv('DB_NAME') ?: 'traslapp_db';
+    $port = getenv('DB_PORT') ?: '3306';
+}
 
 // Detectar si es PostgreSQL (por el puerto, host, o si estamos en Render)
 // En Render, SIEMPRE usamos PostgreSQL (no tienen mysqli disponible)
