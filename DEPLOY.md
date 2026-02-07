@@ -68,7 +68,7 @@ Asegúrate de que las carpetas para subir archivos existan y tengan permisos de 
 3. Configura:
    - **Name**: `traslapp-db`
    - **Database**: `traslapp_db`
-   - **User**: `traslapp_user`
+   - **User**: `  `
    - **Plan**: Free (si está disponible)
 4. Anota las credenciales que Render te proporciona:
    - `Internal Database URL` o los datos individuales (host, user, password, port)
@@ -107,21 +107,87 @@ DB_PORT = 3306
 
 ### 3.4 Importar la Base de Datos
 
-1. **Opción A - Desde Render Dashboard**:
-   - Ve a tu base de datos en Render
-   - Click en "Connect" o "Info"
-   - Usa las credenciales para conectarte con un cliente MySQL (como MySQL Workbench o DBeaver)
+**Paso 1: Obtener las credenciales de conexión**
 
-2. **Opción B - Desde línea de comandos**:
-   ```bash
-   # Descarga el archivo database.sql
-   # Luego ejecuta:
-   mysql -h [DB_HOST] -u [DB_USER] -p[DB_PASSWORD] [DB_NAME] < database.sql
+1. Ve a tu dashboard en Render.com
+2. Click en tu base de datos (ej: `traslapp-db`)
+3. En la sección **"Connections"** o **"Info"**, encontrarás:
+   - **Internal Database URL**: Una URL completa tipo `mysql://user:password@host:port/database`
+   - O los datos individuales: Host, User, Password, Port, Database
+
+**Paso 2: Elegir método de importación**
+
+#### **Opción A - Usando MySQL Workbench (Recomendado - Más fácil)**
+
+1. **Descargar MySQL Workbench** (si no lo tienes):
+   - Ve a: https://dev.mysql.com/downloads/workbench/
+   - Descarga e instala la versión para Windows
+
+2. **Conectar a la base de datos de Render**:
+   - Abre MySQL Workbench
+   - Click en el botón **"+"** para crear nueva conexión
+   - Configura:
+     - **Connection Name**: `Render - Traslapp`
+     - **Hostname**: [El host de Render, ej: `dpg-xxxxx-a.oregon-postgres.render.com`]
+     - **Port**: [El puerto, generalmente `3306`]
+     - **Username**: [Tu usuario de Render]
+     - **Password**: Click en "Store in Keychain" y pega tu contraseña
+     - Click en **"Test Connection"** para verificar
+     - Click en **"OK"**
+
+3. **Importar el archivo SQL**:
+   - Conecta a la base de datos haciendo doble click en la conexión
+   - En el menú superior: **Server** → **Data Import**
+   - Selecciona **"Import from Self-Contained File"**
+   - Click en **"..."** y selecciona tu archivo `database.sql`
+   - En **"Default Target Schema"**, selecciona tu base de datos (`traslapp_db`)
+   - Click en **"Start Import"**
+   - Espera a que termine (verás un mensaje de éxito)
+
+#### **Opción B - Usando línea de comandos (Windows PowerShell)**
+
+Si tienes MySQL instalado (XAMPP incluye MySQL):
+
+1. **Abre PowerShell** y navega a la carpeta de tu proyecto:
+   ```powershell
+   cd C:\xampp\htdocs\complete
    ```
 
-3. **Opción C - Desde phpMyAdmin (si Render lo ofrece)**:
-   - Accede al panel de administración de la BD
-   - Importa el archivo `database.sql`
+2. **Ejecuta el comando de importación**:
+   ```powershell
+   # Reemplaza los valores entre corchetes con tus credenciales reales
+   & "C:\xampp\mysql\bin\mysql.exe" -h [DB_HOST] -u [DB_USER] -p[DB_PASSWORD] [DB_NAME] < database.sql
+   ```
+
+   **Ejemplo real** (ajusta con tus credenciales):
+   ```powershell
+   & "C:\xampp\mysql\bin\mysql.exe" -h dpg-xxxxx-a.oregon-postgres.render.com -u traslapp_user -pabc123xyz traslapp_db < database.sql
+   ```
+
+   **Nota**: Si te pide contraseña, usa este formato:
+   ```powershell
+   & "C:\xampp\mysql\bin\mysql.exe" -h [DB_HOST] -u [DB_USER] -p [DB_NAME] < database.sql
+   ```
+   (te pedirá la contraseña de forma segura)
+
+#### **Opción C - Usando DBeaver (Alternativa gratuita)**
+
+1. **Descargar DBeaver**: https://dbeaver.io/download/
+2. **Crear nueva conexión**:
+   - Click en **"New Database Connection"**
+   - Selecciona **MySQL**
+   - Completa los datos de conexión de Render
+   - Click en **"Test Connection"** y luego **"Finish"**
+3. **Importar SQL**:
+   - Click derecho en tu base de datos → **SQL Editor** → **New SQL Script**
+   - Abre el archivo `database.sql` y cópialo
+   - Pégalo en el editor y ejecuta (F5 o botón "Execute")
+
+**Paso 3: Verificar la importación**
+
+Después de importar, verifica que las tablas se crearon correctamente:
+- Deberías ver las tablas: `usuario`, `serviciosc`, `calificacion`, `hotel`, `reserva_hoteles`
+- Debería existir un usuario admin con documento `00000001` y contraseña `admin123`
 
 ---
 
