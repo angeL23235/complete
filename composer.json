@@ -1,0 +1,15 @@
+{
+    "name": "traslapp/app",
+    "description": "Traslapp - Aplicación de servicios",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "ext-pdo": "*",
+        "ext-pdo_pgsql": "*"
+    },
+    "config": {
+        "platform": {
+            "php": "8.2"
+        }
+    }
+}
