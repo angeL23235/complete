@@ -1,5 +1,5 @@
-# Ignorar archivo específico
-conexion.php
+# Ignorar archivo específico (solo versiones locales con credenciales hardcodeadas)
+# conexion.php - Ahora se incluye en el repo porque usa variables de entorno
 
 # Ignorar carpeta js
 js/
