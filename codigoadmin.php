@@ -1,7 +1,9 @@
 <?php
+   // Iniciar sesión ANTES de cualquier output
+   session_start();
+   
    if (isset($_POST['btn_ing'])) {
        include "conexion.php";
-       session_start();
        $doc = $_POST['doc'];
        $pass = $_POST['pass'];
        $encrip = md5($pass);
@@ -17,13 +19,16 @@
            $encrip = mysqli_real_escape_string($con, $encrip);
            $consulta = mysqli_query($con, "SELECT * FROM usuario WHERE numero_documento='$doc' AND clave='$encrip'");
            if (!$consulta) {
-               die("Error en la consulta: " . mysqli_error($con));
+               $_SESSION['error'] = "Error en la consulta: " . mysqli_error($con);
+               header("location:index.php");
+               exit();
            }
        }
        $resultado = mysqli_num_rows($consulta);
    
        if ($resultado == 1) {
-           while ($fila = mysqli_fetch_array($consulta)) {
+           $fila = mysqli_fetch_array($consulta);
+           if ($fila) {
                $_SESSION['doc'] = $fila['numero_documento'];
                $_SESSION['pn'] = $fila['nombres'];
                $_SESSION['ape'] = $fila['apellidos'];
@@ -32,22 +37,42 @@
                $_SESSION['rl'] = $fila['id_rol'];
                $_SESSION['desc'] = $fila['descripcion'];
 
+               // Limpiar cualquier output antes de redirigir
+               if (ob_get_level() > 0) {
+                   ob_clean();
+               }
+               
                // Redirección según el rol
                if ($_SESSION['rl'] == 1 || $_SESSION['rl'] == 2) {
-                   header("location:client/dashboard.php");
+                   header("Location: client/dashboard.php");
                    exit();
                } elseif ($_SESSION['rl'] == 3) {
-                   header("location:admin/admin.php");
+                   // Verificar si existe el archivo admin antes de redirigir
+                   if (file_exists("admin/admin.php")) {
+                       header("Location: admin/admin.php");
+                   } else {
+                       // Si no existe, redirigir al dashboard del cliente
+                       header("Location: client/dashboard.php");
+                   }
                    exit();
                } else {
-                   echo "<script>alert('rectifica tus datos')</script>";
+                   $_SESSION['error'] = "Rol no válido. Rectifica tus datos.";
+                   header("Location: index.php");
+                   exit();
                }
+           } else {
+               $_SESSION['error'] = "No se pudo obtener los datos del usuario.";
+               header("Location: index.php");
+               exit();
            }
-        
        } else {
-           echo "<script>alert('revisa los datos ingresados')</script>";
-           echo "<script>(window.location='index.php')</script>";
-
+           $_SESSION['error'] = "Revisa los datos ingresados. Usuario o contraseña incorrectos.";
+           header("Location: index.php");
+           exit();
        }
+   } else {
+       // Si no hay POST, redirigir al index
+       header("Location: index.php");
+       exit();
    }
 ?>

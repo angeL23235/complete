@@ -61,6 +61,18 @@ if ($lang == 'es') {
                         <h1><?php echo $translations['login']; ?></h1> 
                     </div>
                 </div>
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?php 
+                        echo $_SESSION['error'];
+                        unset($_SESSION['error']);
+                        ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif; ?>
+                
                 <form action="codigoadmin.php" method="post">
                     <div class="form-group">
                         <label for="num"><?php echo $translations['doc_number']; ?></label>
