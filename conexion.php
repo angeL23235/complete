@@ -16,9 +16,21 @@ $pass = getenv('DB_PASSWORD') ?: '';
 $db   = getenv('DB_NAME') ?: 'traslapp_db';
 $port = getenv('DB_PORT') ?: '5432';
 
-// Detectar si es PostgreSQL (por el puerto o host)
-// En Render, PostgreSQL usa puerto 5432 y el host contiene 'render.com' o 'postgres'
-$is_postgresql = ($port == '5432' || strpos($host, 'postgres') !== false || strpos($host, 'render.com') !== false || strpos($host, 'dpg-') !== false);
+// Detectar si estamos en Render (por variable de entorno o hostname)
+$is_render = (getenv('RENDER') !== false || 
+              getenv('RENDER_SERVICE_NAME') !== false || 
+              getenv('RENDER_EXTERNAL_URL') !== false ||
+              (isset($_SERVER['SERVER_NAME']) && strpos($_SERVER['SERVER_NAME'], 'onrender.com') !== false));
+
+// Detectar si es PostgreSQL (por el puerto, host, o si estamos en Render)
+// En Render, SIEMPRE usamos PostgreSQL (no tienen mysqli disponible)
+$is_postgresql = $is_render || 
+                 $port == '5432' || 
+                 strpos($host, 'postgres') !== false || 
+                 strpos($host, 'render.com') !== false || 
+                 strpos($host, 'dpg-') !== false ||
+                 strpos($host, 'oregon-postgres') !== false ||
+                 !function_exists('mysqli_connect'); // Si mysqli no está disponible, usar PDO
 
 try {
     if ($is_postgresql) {
@@ -28,14 +40,29 @@ try {
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     } else {
-        // Conexión MySQL usando mysqli (para desarrollo local)
-        $con = mysqli_connect($host, $user, $pass, $db, $port);
-        if (!$con) {
-            die('Error de conexión (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
+        // Conexión MySQL usando mysqli (solo para desarrollo local si mysqli está disponible)
+        if (function_exists('mysqli_connect')) {
+            $con = mysqli_connect($host, $user, $pass, $db, $port);
+            if (!$con) {
+                die('Error de conexión (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
+            }
+        } else {
+            // Si mysqli no está disponible, usar PDO (PostgreSQL o MySQL según configuración)
+            // En Render, siempre es PostgreSQL
+            if ($is_render || $port == '5432') {
+                $dsn = "pgsql:host=$host;port=$port;dbname=$db";
+            } else {
+                $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
+            }
+            $con = new PDO($dsn, $user, $pass);
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            // Marcar como PostgreSQL para usar los wrappers (funcionan igual para MySQL con PDO)
+            $is_postgresql = true;
         }
     }
 } catch (PDOException $e) {
-    die('Error de conexión a PostgreSQL: ' . $e->getMessage());
+    die('Error de conexión a la base de datos: ' . $e->getMessage());
 } catch (Exception $e) {
     die('Error de conexión: ' . $e->getMessage());
 }
