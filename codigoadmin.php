@@ -43,17 +43,18 @@
                }
                
                // Redirección según el rol
-               if ($_SESSION['rl'] == 1 || $_SESSION['rl'] == 2) {
-                   header("Location: client/dashboard.php");
-                   exit();
-               } elseif ($_SESSION['rl'] == 3) {
-                   // Verificar si existe el archivo admin antes de redirigir
+               if ($_SESSION['rl'] == 1 || $_SESSION['rl'] == 3) {
+                   // Administradores y Super Admin van al panel de administración
                    if (file_exists("admin/admin.php")) {
                        header("Location: admin/admin.php");
                    } else {
                        // Si no existe, redirigir al dashboard del cliente
                        header("Location: client/dashboard.php");
                    }
+                   exit();
+               } elseif ($_SESSION['rl'] == 2) {
+                   // Usuarios normales van al dashboard del cliente
+                   header("Location: client/dashboard.php");
                    exit();
                } else {
                    $_SESSION['error'] = "Rol no válido. Rectifica tus datos.";
